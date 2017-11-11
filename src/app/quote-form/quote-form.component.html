@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h1>Add a Quote</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-8">
+    <form (ngSubmit)="onSubmitQuote(); quoteForm.resetForm()" #quoteForm='ngForm'>
+      <div class="form-group">
+
+        <p><textarea [(ngModel)]="currQuote.text" minlength="4" required class="form-control" name="text" id="" rows="10" #text="ngModel"></textarea></p>
+        <p><label class="form-label" for="">Author</label><input type="text" name="author" id="" required class="form-control" [(ngModel)]="currQuote.author" #author="ngModel"></p>
+        <p><button [disabled]="quoteForm.invalid" type="submit" class="btn btn-primary float-right">Add Quote</button></p>
+      </div>
+    </form>
+
+
+  </div>
+  <div class="col-sm-4">
+    <div *ngIf="text.invalid && (text.dirty || text.touched)">
+
+      <p *ngIf="text.errors.required" class="text-danger">Quote is required.</p>
+      <p *ngIf="text.errors.minlength" class="text-danger">Quote must be 4 characters.</p>
+    </div>
+    <div *ngIf="author.invalid && (author.dirty || author.touched)">
+
+      <p *ngIf="author.errors.required" class="text-danger">Author is required.</p>
+    </div>
+  </div>
+</div>
